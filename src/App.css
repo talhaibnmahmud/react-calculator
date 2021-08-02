@@ -1,38 +1,110 @@
-.App {
-  text-align: center;
+/* Styling */
+
+:root {
+  --background: #d1dae3;
+  --button-text: #091921;
+  --operand-text: #008eff;
+  --ac-text: #ff5c10;
+  --border-color: #cad3dc;
+  --previous-color: #555555;
+  --current-color: #333333;
+  --border: 4px solid var(--border-color);
+  --box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.5),
+    10px 10px 10px rgba(0, 0, 0, 0.1);
+  --inset-shadow: inset -8px -8px 15px rgba(255, 255, 255, 0.5),
+    inset 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  background-color: var(--background);
+  width: 100vw;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.calculator-grid {
+  min-height: 90vh;
+  width: max-content;
+  padding: 1em;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 5em);
+  grid-template-rows: minmax(7.5em, auto) repeat(5, 5em);
+  gap: 0.75em;
+  border-radius: 1em;
+  background-color: var(--background);
+  box-shadow: var(--box-shadow);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.calculator-button {
+  cursor: pointer;
+  font-size: large;
+  border: 0;
+  outline: none;
+  border-radius: 50%;
+  user-select: none;
+  background-color: var(--background);
+  color: var(--button-text);
+  box-shadow: var(--box-shadow);
+}
+
+.calculator-button:active:focus {
+  border: var(--border);
+  box-shadow: var(--box-shadow), var(--inset-shadow);
+}
+
+.operation {
+  color: var(--operand-text);
+}
+
+.ac {
+  color: var(--ac-text);
+}
+
+.output {
+  grid-column: 1 / -1;
+  margin-bottom: 1em;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: var(--border);
+  border-radius: 1em;
+  box-shadow: var(--box-shadow), var(--inset-shadow);
+}
+
+.previous-operand {
+  font-size: 1.5em;
+  color: var(--previous-color);
+}
+
+.current-operand {
+  font-size: 2.5em;
+  color: var(--current-color);
+}
+
+.span-two {
+  grid-row: span 2;
+  border-radius: 1em;
+  font-size: x-large;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #091921;
+    --button-text: #d1dae3;
+    --previous-color: darkgrey;
+    --current-color: lightgrey;
+    --border-color: var(--background);
+    --shadow-light: 0 -1em 1em rgba(255, 255, 255, 0.05);
+    --shadow-dark: 0 1em 1em rgba(0, 0, 0, 0.3);
+    --box-shadow: var(--shadow-light), var(--shadow-dark);
+    --inset-shadow: inset var(--shadow-light), inset var(--shadow-dark);
   }
 }

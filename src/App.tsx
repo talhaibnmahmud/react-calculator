@@ -1,25 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+// CSS
+import "./App.css";
+
+// Components
+import Button from "./components/Button";
+import Operator from "./components/Operator";
 
 function App() {
+  const [prev] = useState("0");
+  const [current] = useState("0");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="calculator-grid">
+      <div className="output">
+        <div className="previous-operand">{prev}</div>
+        <div className="current-operand">{current}</div>
+      </div>
+
+      <Operator text="AC" classes="ac" />
+      <Operator text="%" classes="operation" />
+      <Operator text="/" classes="operation" />
+      <Operator text="DEL" classes="operation" />
+
+      <Button text={1} />
+      <Button text={2} />
+      <Button text={3} />
+      <Operator text="*" classes="operation" />
+
+      <Button text={4} />
+      <Button text={5} />
+      <Button text={6} />
+      <Operator text="-" classes="operation" />
+
+      <Button text={7} />
+      <Button text={8} />
+      <Button text={9} />
+      <Operator text="+" classes="operation span-two" />
+
+      <Button text={"."} />
+      <Button text={0} />
+      <Operator text="=" classes="operation" />
+    </main>
   );
 }
 
