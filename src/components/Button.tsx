@@ -1,11 +1,27 @@
-import { FC } from "react";
+import { FC, Dispatch, SetStateAction } from "react";
 
 type Props = {
-  text: number | string;
+  text: string;
+  current: string;
+  setCurrent: Dispatch<SetStateAction<string>>;
 };
 
-const Button: FC<Props> = ({ text }) => {
-  return <button className="calculator-button">{text}</button>;
+const Button: FC<Props> = ({ text, current, setCurrent }) => {
+  const updateCurrent = () => {
+    if (current.includes(".") && text === ".") return;
+    if (current === "0") {
+      setCurrent(text);
+      return;
+    }
+
+    setCurrent((prev) => prev + text);
+  };
+
+  return (
+    <button className="calculator-button" onClick={updateCurrent}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

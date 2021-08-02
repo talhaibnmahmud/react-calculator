@@ -9,7 +9,7 @@ import Operator from "./components/Operator";
 
 function App() {
   const [prev] = useState("0");
-  const [current] = useState("0");
+  const [current, setCurrent] = useState("0");
 
   return (
     <main className="calculator-grid">
@@ -23,23 +23,23 @@ function App() {
       <Operator text="/" classes="operation" />
       <Operator text="DEL" classes="operation" />
 
-      <Button text={1} />
-      <Button text={2} />
-      <Button text={3} />
+      <Button text="1" current={current} setCurrent={setCurrent} />
+      <Button text="2" current={current} setCurrent={setCurrent} />
+      <Button text="3" current={current} setCurrent={setCurrent} />
       <Operator text="*" classes="operation" />
 
-      <Button text={4} />
-      <Button text={5} />
-      <Button text={6} />
+      <Button text="4" current={current} setCurrent={setCurrent} />
+      <Button text="5" current={current} setCurrent={setCurrent} />
+      <Button text="6" current={current} setCurrent={setCurrent} />
       <Operator text="-" classes="operation" />
 
-      <Button text={7} />
-      <Button text={8} />
-      <Button text={9} />
+      <Button text="7" current={current} setCurrent={setCurrent} />
+      <Button text="8" current={current} setCurrent={setCurrent} />
+      <Button text="9" current={current} setCurrent={setCurrent} />
       <Operator text="+" classes="operation span-two" />
 
-      <Button text={"."} />
-      <Button text={0} />
+      <Button text="." current={current} setCurrent={setCurrent} />
+      <Button text="0" current={current} setCurrent={setCurrent} />
       <Operator text="=" classes="operation" />
     </main>
   );
