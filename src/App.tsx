@@ -12,6 +12,20 @@ function App() {
   const [current, setCurrent] = useState("0");
   const [lastOperator, setLastOperator] = useState("");
 
+  const updateCurrent = (text: string) => {
+    if (current.includes(".") && text === ".") return;
+    if (current === "0" && text === ".") {
+      setCurrent((prev) => prev + text);
+      return;
+    }
+    if (current === "0") {
+      setCurrent(text);
+      return;
+    }
+
+    setCurrent((prev) => prev + text);
+  };
+
   const clearAll = () => {
     setPrevious("0");
     setCurrent("0");
@@ -91,23 +105,23 @@ function App() {
       <Operator text="/" classes="operation" callback={operator} />
       <Operator text="DEL" classes="operation" callback={del} />
 
-      <Button text="1" current={current} setCurrent={setCurrent} />
-      <Button text="2" current={current} setCurrent={setCurrent} />
-      <Button text="3" current={current} setCurrent={setCurrent} />
+      <Button text="1" callback={updateCurrent} />
+      <Button text="2" callback={updateCurrent} />
+      <Button text="3" callback={updateCurrent} />
       <Operator text="*" classes="operation" callback={operator} />
 
-      <Button text="4" current={current} setCurrent={setCurrent} />
-      <Button text="5" current={current} setCurrent={setCurrent} />
-      <Button text="6" current={current} setCurrent={setCurrent} />
+      <Button text="4" callback={updateCurrent} />
+      <Button text="5" callback={updateCurrent} />
+      <Button text="6" callback={updateCurrent} />
       <Operator text="-" classes="operation" callback={operator} />
 
-      <Button text="7" current={current} setCurrent={setCurrent} />
-      <Button text="8" current={current} setCurrent={setCurrent} />
-      <Button text="9" current={current} setCurrent={setCurrent} />
+      <Button text="7" callback={updateCurrent} />
+      <Button text="8" callback={updateCurrent} />
+      <Button text="9" callback={updateCurrent} />
       <Operator text="+" classes="operation span-two" callback={operator} />
 
-      <Button text="." current={current} setCurrent={setCurrent} />
-      <Button text="0" current={current} setCurrent={setCurrent} />
+      <Button text="." callback={updateCurrent} />
+      <Button text="0" callback={updateCurrent} />
       <Operator text="=" classes="operation" callback={equals} />
     </main>
   );
