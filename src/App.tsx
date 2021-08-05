@@ -39,10 +39,25 @@ function App() {
     setCurrent(current.slice(0, current.length - 1));
   };
 
+  const percent = () => {
+    if (previous === "0") {
+      let result = parseFloat(current) / 100;
+      setCurrent(result.toString());
+      return;
+    }
+
+    let result = (parseFloat(previous) * parseFloat(current)) / 100;
+    setCurrent(result.toString());
+  };
+
   const equals = () => {
     if (previous === "0" || current === "0") return;
 
-    compute();
+    const result = compute();
+
+    setPrevious(previous + lastOperator + current);
+    setCurrent(result.toString());
+    setLastOperator("");
   };
 
   const operator = (text: string) => {
@@ -88,6 +103,8 @@ function App() {
         result = parseFloat(previous) / parseFloat(current);
         console.log(result);
         break;
+      default:
+        result = 0;
     }
 
     return result;
@@ -101,7 +118,7 @@ function App() {
       </div>
 
       <Operator text="AC" classes="ac" callback={clearAll} />
-      <Operator text="%" classes="operation" callback={operator} />
+      <Operator text="%" classes="operation" callback={percent} />
       <Operator text="/" classes="operation" callback={operator} />
       <Operator text="DEL" classes="operation" callback={del} />
 
